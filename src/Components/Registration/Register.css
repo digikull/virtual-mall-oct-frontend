@@ -1,0 +1,27 @@
+#btn{
+  background-color:#fe696a;
+  color: white;
+}
+#btn:hover{
+  background-color: #fe3638;
+}
+i {
+  position: absolute;
+  top: 33%;
+  right: 6%;
+  
+}
+i:hover {
+  color: #00fcb6;
+  cursor: pointer;
+}
+#eye{
+  position: absolute;
+  top: 56%;
+  right: 6%;
+  
+}
+#eye:hover{
+  color: #00fcb6;
+  cursor: pointer;
+}
