@@ -1,7 +1,19 @@
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import BaseRouter from './routes'
+
+import 'antd/dist/antd.css'
+
+import Dashboard from './Components/Dashboard/Dashboard'
+
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Virtual Mall</h1>
+      <Router>
+        <Dashboard>
+          <BaseRouter />
+        </Dashboard>
+      </Router>
     </div>
   );
 }
