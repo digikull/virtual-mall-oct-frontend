@@ -1,12 +1,20 @@
-
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { useForm } from 'react-hook-form'
 import secureAxios from '../../Config/secureAxios/secureAxios'
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import { Slide, Zoom, Limit, Bounce } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Register.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser,faEye  } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
+
+
+
+
+
 export default function Registration() {
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
     const [passwordShown, setPasswordShown] = useState(false);
@@ -27,11 +35,41 @@ export default function Registration() {
         setUserRegsitration({ ...UserRegsitration, [e.target.name]: e.target.value })
 
     }
+    
 
-    const onSubmit = (data) => {
-        secureAxios.post('register/', UserRegsitration)
+    
+    const onSubmit = async (data) => {
+       await secureAxios.post('register/', UserRegsitration)
             .then(res => {
+
                 console.log(res.data)
+                localStorage.setItem('error', res.data.error)
+                if(res.data.error === localStorage.getItem('error')){
+                    toast.error(localStorage.getItem('error'), {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+
+                    });
+                }
+                else {
+                    toast.success('Registered Successfully', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+
+
+                    });
+                }
+
             })
             .catch(error => {
                 console.log(error.data)
@@ -112,7 +150,11 @@ export default function Registration() {
                 </div>
             </div>
 
+            <ToastContainer
+                transition={Zoom}
+                limit = '1'
 
+            />
 
 
 
