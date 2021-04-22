@@ -1,7 +1,19 @@
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Forgotpass from "./components/Forgotpass";
+import Resetpassword from "./components/Resetpassword";
+import Msg from "./components/Msg";
+
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Virtual Mall</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Forgotpass} />
+          <Route exact path="/msg" component={Msg} />
+          <Route exact path="/Resetpassword/:id" component={Resetpassword} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
